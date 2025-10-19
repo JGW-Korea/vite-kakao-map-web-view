@@ -1,16 +1,17 @@
 {
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "nativewind-env.d.ts", "src/global/types"],
+  "include": ["src", "src/types", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types"],
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
     "target": "ES2015",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"]
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "lib": ["ESNext", "DOM"],
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   }
 }
