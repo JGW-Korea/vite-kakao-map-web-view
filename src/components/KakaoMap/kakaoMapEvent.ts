@@ -5,11 +5,7 @@ import { LatLngBoundsInstance, LatLngInstance, MapInstance } from "../../types/k
 // ------------------------------------------
 
 /**  중앙 좌표 기준 대한민국 지도 경계 벗어난 경우 중앙 좌표 재지정 이벤트 리스너 */
-export function handleDraggableBounds(
-  allowedBounds: LatLngBoundsInstance,
-  lastValidCenter: React.RefObject<LatLngInstance | null>,
-  map: MapInstance
-) {
+export function handleDraggableBounds(allowedBounds: LatLngBoundsInstance, lastValidCenter: React.RefObject<LatLngInstance | null>, map: MapInstance) {
   if (!lastValidCenter.current) return;
   const center = map.getCenter(); // 드래그(Drag) 이후의 지도 중앙 좌표를 전달받는다.
 
