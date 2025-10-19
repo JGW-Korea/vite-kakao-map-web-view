@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
-import KakaoMap from "./KakaoMap.tsx";
+import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(<KakaoMap />);
+createRoot(document.getElementById("root")!).render(<App />);
