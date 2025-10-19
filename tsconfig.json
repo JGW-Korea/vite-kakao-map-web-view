@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "include": ["src", "src/types", "**/*.ts", "**/*.tsx"],
+  "include": ["src", "src/global/types/*.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "target": "ES2015",
     "module": "ESNext",
@@ -12,6 +12,6 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "lib": ["ESNext", "DOM"],
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types"]
   }
 }
