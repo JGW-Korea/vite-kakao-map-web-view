@@ -15,6 +15,7 @@ declare global {
         LatLngBounds: KakaoMapSDK.LatLngBounds;
         event: {
           addListener: (map: MapInstance, type: MapEventType, cb: (event?: MouseEvent) => void) => void;
+          removeListener: (map: MapInstance, type: MapEventType, cb: (event?: MouseEvent) => void) => void;
         }
         [key: string]: unknown;
       };
