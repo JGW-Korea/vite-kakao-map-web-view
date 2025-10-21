@@ -21,4 +21,9 @@ declare global {
       };
     };
   }
+
+  interface Document {
+      addEventListener(type: "message", listener: (this: Document, ev: MessageEvent) => unknown, options?: boolean | AddEventListenerOptions): void;
+      removeEventListener(type: "message", listener: (this: Document, ev: MessageEvent) => unknown, options?: boolean | AddEventListenerOptions): void;
+  }
 }
