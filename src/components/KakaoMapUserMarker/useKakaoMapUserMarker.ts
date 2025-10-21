@@ -1,15 +1,22 @@
 import { useEffect, useRef } from "react";
 import { useMapStore } from "../KakaoMap/kakaoMap.store";
+import { useShallow } from "zustand/shallow";
 
 export default function useKakaoMapUserMarker() {
-  const kakaoMap = useMapStore((state) => state.kakaoMap);
+  const { kakaoMap, granted, location } = useMapStore(useShallow((state) => {
+    return {
+      kakaoMap: state.kakaoMap,
+      granted: state.granted,
+      location: state.location
+    }
+  }));
 
   const userMarkerRef = useRef<HTMLDivElement>(null);
   const userMarkerAnimationRef = useRef<HTMLDivElement>(null); // 사용자 현재 위치 마커의 애니메이션을 제어하기 위한 DOM Element 참조 객체
 
   // 요소의 애니메이션 제어 + 카카오 지도에 추가하기 위한 사이드 이펙트(side-effect)
   useEffect(() => {
-    if (!userMarkerAnimationRef.current) return;
+    if(!userMarkerAnimationRef.current || !granted) return;
 
     const element = userMarkerAnimationRef.current;
 
@@ -31,7 +38,7 @@ export default function useKakaoMapUserMarker() {
 
     // 카카오 지도에 커스텀 오버레이를 추가한다.
     if (kakaoMap && userMarkerRef.current) {
-      const position = new window.kakao.maps.LatLng(37.5665, 126.978);
+      const position = new window.kakao.maps.LatLng(location.latitude, location.longitude);
 
       // 커스텀 오버레이를 생성합니다
       new window.kakao.maps.CustomOverlay({
@@ -45,7 +52,7 @@ export default function useKakaoMapUserMarker() {
     return () => {
       element.removeEventListener("animationiteration", handleAnimationIteration);
     };
-  }, [kakaoMap]);
+  }, [kakaoMap, granted, location])
 
   return { userMarkerRef, userMarkerAnimationRef };
 }
